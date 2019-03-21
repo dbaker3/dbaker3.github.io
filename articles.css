@@ -1,1 +1,12 @@
-
+@import 'https://fonts.googleapis.com/css?family=Vollkorn';
+html {
+  margin: 1em;
+  font-family: 'Vollkorn', serif;
+} 
+body {
+  margin: 0 auto;
+  max-width: 700px;
+}
+p {
+  text-align: justify;
+}

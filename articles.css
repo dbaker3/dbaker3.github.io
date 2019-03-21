@@ -10,3 +10,10 @@ body {
 p {
   text-align: justify;
 }
+a:hover {
+    text-decoration: underline;
+}
+a {
+    color: #00739C;
+    text-decoration: none;
+}

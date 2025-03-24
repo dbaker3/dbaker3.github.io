@@ -1,0 +1,53 @@
+<!-- Speak a word and I'll give you the spelling. Utilizes Web Speech API (Firefox not supported). -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Spelling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Speller</h1>
+    <button id="recordButton">Record Word</button>
+    <p id="output"></p>
+
+    <script>
+        const recordButton = document.getElementById("recordButton");
+        const output = document.getElementById("output");
+
+        recordButton.addEventListener("click", () => {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = "en-US";
+            recognition.start();
+
+            recognition.onresult = (event) => {
+                const spokenWord = event.results[0][0].transcript.trim();
+                const spelledWord = spellWord(spokenWord);
+                output.textContent = spellWord(spokenWord);
+                speakWord(spokenWord);
+            };
+        });
+
+        function spellWord(word) {
+            return word.split('').join(' ');
+        }
+
+        function speakWord(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
